@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+/* Example tracking result style */
+#tracking-results {
+    text-align: left; /* Align left */
+    max-width: 700px; /* Limit width */
+    margin: 0 auto; /* Center horizontally */
+    color: var(--text-color);
+}
+
+#tracking-results p {
+    margin: 5px 0;
+}
+
+
+#tracking-results {
+    text-align: left;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.tracking-step {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.tracking-step .officestop {
+    flex: 0 0 auto; /* Do not grow, do not shrink */
+    margin-right: 20px;
+}
+
+.tracking-step .circle {
+    flex: 0 0 auto;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.tracking-step .info {
+    flex: 1; /* Take remaining space */
+}
+
+
+.borderline {
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+}
+
+.tracking-step h3 {
+    margin-bottom: 5px;
+}
+
+.tracking-step p {
+    margin: 5px 0;
+}
+
+
+.headerlabel {
+    flex: 0 0 auto; /* Right-aligned labels */
+    text-align: right;
+    margin-right: 10px;
+    width: 200px; /* Adjust as needed */
+}
+
+.detaillabel {
+    flex: 0 0 auto; /* Right-aligned labels */
+    text-align: right;
+    margin-right: 10px;
+    width: 100px; /* Adjust as needed */
+}
+
+.detail {
+    flex: 1; /* Left-aligned details */
+    text-align: left;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+
+.popup-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* Set the height to occupy the full viewport */
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    z-index: 9999; /* Ensure the popup appears on top of other content */
+    display: none; /* Hide the popup by default */
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.popup {
+    position: relative;
+    width: 80%; /* Adjust the width as needed */
+    max-width: 500px; /* Maximum width for better readability */
+    margin: 10% auto; /* Center the popup vertically and horizontally */
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow effect */
+}
+
+.popup h2{
+   align-content: center;
+    color: var(--text-color);
+    margin-bottom: 20px;
+
+}
+
+.close-popup {
+    position: absolute;
+    top: 1px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 40px;
+    transition: opacity 0.3s ease; /* Adding a transition for smooth effect */
+    color: var(--primary-color);
+}
+
+.close-popup:hover {
+    opacity: 0.7; /* Dim the button slightly on hover */
+}
+
+/* Animation for close popup */
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}

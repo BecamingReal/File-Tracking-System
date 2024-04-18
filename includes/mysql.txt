@@ -1,0 +1,58 @@
+CREATE DATABASE `file_tracker`;
+USE `file_tracker`;
+
+CREATE TABLE `file` (
+    `track_id` VARCHAR(18) PRIMARY KEY,
+    `trans_id` INT(3) NOT NULL,
+    `payee` VARCHAR(255) NOT NULL,
+    `particulars` VARCHAR(255) NOT NULL,
+    `amount` INT(15) NOT NULL,
+    `created` DATETIME,
+    `trans_date` DATE NOT NULL,
+    `status` INT(1) NOT NULL,
+    `step` INT(5) NOT NULL,
+    `additional_info` TEXT,
+    `lastupdate` DATETIME,
+    `reason` VARCHAR(255) NULL
+);
+
+CREATE TABLE `action` (
+    `track_id` VARCHAR(18),
+    `office_rec` INT(3),
+    `in` DATETIME,
+    `out` DATETIME,
+    `liaison` INT(6),
+    `comment` TEXT,
+    `proceed` BOOLEAN,
+    `count` INT(5),
+    `read` BOOLEAN DEFAULT FALSE,
+    PRIMARY KEY (`track_id`,`count`)
+);
+
+
+CREATE TABLE `account` (
+    `user_id` INT(6) UNSIGNED AUTO_INCREMENT,
+    `name` VARCHAR(50),
+    `password` VARCHAR(255),
+    `role` INT(1),
+    `office` INT(4),
+    PRIMARY KEY (`user_id`),
+    UNIQUE KEY (`name`)
+);
+
+CREATE TABLE `office_list` (
+    `office_code` INT(4),
+    `office_name` VARCHAR(50),
+    PRIMARY KEY (`office_code`)
+);
+
+CREATE TABLE `transaction_type` (
+    `trans_id` INT(3) UNSIGNED AUTO_INCREMENT,
+    `trans_type` VARCHAR(50),
+    `steps` TEXT,
+    PRIMARY KEY (`trans_id`),
+    UNIQUE KEY (`trans_type`)
+);
+
+INSERT INTO account (name, password, role, office) VALUES ('admin', '$2y$10$yI0c1esbR0pT39p5sZZK9Oze0bsC0I5LMbBYuuTR.xoY8daKb6xce', '1', '1');
+INSERT INTO office_list (office_code, office_name) VALUES ('1', 'Admin');

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+            width: 600px; /* Adjust the width as needed */
+            margin: 0 auto; /* Center the container horizontally */
+            border: 1px solid #ccc; /* Optional: Add a border for visualization */
+            padding: 20px; /* Optional: Add padding for spacing */
+        }
+
+        #scanned-result {
+            width: 100%; /* Set the width to 100% to fill the container */
+            box-sizing: border-box; /* Include padding and border in the width calculation */
+            padding: 10px; /* Optional: Add padding for spacing */
+            margin-top: 10px; /* Optional: Add margin for spacing */
+        }
+    </style>
+</head>
+<body>
+    <div id="your-qr-result"></div>
+    <h1>Scan QR HTML</h1>
+    <div class="container">
+        <div id="my-qr-reader" style="width: 500px;"></div>
+        <input type="text" id="scanned-result" placeholder="Your scanned result will appear here" readonly>
+    </div>
+    
+    <script src="js/html5-qrcode.min.js"></script>
+    <script>
+        // Check if DOM is ready
+        function domReady(fn) {
+            if (document.readyState === "complete" || document.readyState === "interactive") {
+                setTimeout(fn, 1);
+            } else {
+                document.addEventListener("DOMContentLoaded", fn);
+            }
+        }
+
+        domReady(function () {
+            var yourQR = document.getElementById('your-qr-result');
+            var scannedResult = document.getElementById('scanned-result');
+            var lastResult;
+            var countResult = 0;
+
+            // Function to handle successful QR code scan
+            function onScanSuccess(decodedText) {
+                if (decodedText !== lastResult) {
+                    countResult++;
+                    lastResult = decodedText;
+                    alert("Your QR code is: " + decodedText);
+                    yourQR.innerHTML = `You scanned ${countResult} times: ${decodedText}`;
+                    scannedResult.value = decodedText;
+                }
+            }
+
+            var htmlScanner = new Html5QrcodeScanner(
+                "my-qr-reader", { fps: 10, qrbox: 250 }
+            );
+
+            htmlScanner.render(onScanSuccess);
+        });
+    </script>
+</body>
+</html>

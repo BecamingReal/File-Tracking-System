@@ -1,0 +1,817 @@
+/* Google Font Import - Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root{
+    /* ===== Colors ===== */
+    --body-color: #E4E9F7;
+    --sidebar-color: #FFF;
+    --primary-color: #FB6D48;
+    --primary-color-light: #F6F5FF;
+    --toggle-color: #DDD;
+    --text-color: #707070;
+
+    /* ====== Transition ====== */
+    --tran-03: all 0.2s ease;
+    --tran-03: all 0.3s ease;
+    --tran-04: all 0.3s ease;
+    --tran-05: all 0.3s ease;
+}
+
+body{
+    min-height: 100vh;
+    background-color: var(--body-color);
+    transition: var(--tran-05);
+    align-items: center;
+    align-content: center;
+    
+}
+
+::selection{
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+body.dark{
+    --body-color: #18191a;
+    --sidebar-color: #242526;
+    --primary-color: #3a3b3c;
+    --primary-color-light: #3a3b3c;
+    --toggle-color: #fff;
+    --text-color: #ccc;
+}
+
+/* ===== Sidebar ===== */
+ .sidebar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 250px;
+    padding: 10px 14px;
+    background: var(--sidebar-color);
+    transition: var(--tran-05);
+    z-index: 100;  
+}
+.sidebar.close{
+    width: 88px;
+}
+
+/* ===== Reusable code - Here ===== */
+.sidebar li{
+    height: 50px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.sidebar header .image,
+.sidebar .icon{
+    min-width: 60px;
+    border-radius: 6px;
+}
+
+.sidebar .icon{
+    min-width: 60px;
+    border-radius: 6px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.sidebar .text,
+.sidebar .icon{
+    color: var(--text-color);
+    transition: var(--tran-03);
+}
+
+.sidebar .text{
+    font-size: 17px;
+    font-weight: 500;
+    white-space: nowrap;
+    opacity: 1;
+}
+.sidebar.close .text{
+    opacity: 0;
+}
+/* =========================== */
+
+.sidebar header{
+    position: relative;
+}
+
+.sidebar header .image-text{
+    display: flex;
+    align-items: center;
+}
+.sidebar header .logo-text{
+    display: flex;
+    flex-direction: column;
+}
+header .image-text .name {
+    margin-top: 2px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+header .image-text .profession{
+    font-size: 16px;
+    margin-top: -2px;
+    display: block;
+}
+
+.sidebar header .image{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar header .image img{
+    width: 40px;
+    border-radius: 6px;
+}
+
+.sidebar header .toggle{
+    position: absolute;
+    top: 50%;
+    right: -25px;
+    transform: translateY(-50%) rotate(180deg);
+    height: 25px;
+    width: 25px;
+    background-color: var(--primary-color);
+    color: var(--sidebar-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    cursor: pointer;
+    transition: var(--tran-05);
+}
+
+body.dark .sidebar header .toggle{
+    color: var(--text-color);
+}
+
+.sidebar.close .toggle{
+    transform: translateY(-50%) rotate(0deg);
+}
+
+.sidebar .menu{
+    margin-top: 40px;
+}
+
+.sidebar li.search-box{
+    border-radius: 6px;
+    background-color: var(--primary-color-light);
+    cursor: pointer;
+    transition: var(--tran-05);
+}
+
+.sidebar li.search-box input{
+    height: 100%;
+    width: 100%;
+    outline: none;
+    border: none;
+    background-color: var(--primary-color-light);
+    color: var(--text-color);
+    border-radius: 6px;
+    font-size: 17px;
+    font-weight: 500;
+    transition: var(--tran-05);
+}
+.sidebar li a{
+    list-style: none;
+    height: 100%;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: var(--tran-03);
+}
+
+.sidebar li a:hover{
+    background-color: var(--primary-color);
+}
+.sidebar li a:hover .icon,
+.sidebar li a:hover .text{
+    color: var(--sidebar-color);
+}
+body.dark .sidebar li a:hover .icon,
+body.dark .sidebar li a:hover .text{
+    color: var(--text-color);
+}
+
+.sidebar .menu-bar{
+    height: calc(100% - 55px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow-y: scroll;
+}
+.menu-bar::-webkit-scrollbar{
+    display: none;
+}
+.sidebar .menu-bar .mode{
+    border-radius: 6px;
+    background-color: var(--primary-color-light);
+    position: relative;
+    transition: var(--tran-05);
+}
+
+.menu-bar .mode .sun-moon{
+    height: 50px;
+    width: 60px;
+}
+
+.mode .sun-moon i{
+    position: absolute;
+}
+.mode .sun-moon i.sun{
+    opacity: 0;
+}
+body.dark .mode .sun-moon i.sun{
+    opacity: 1;
+}
+body.dark .mode .sun-moon i.moon{
+    opacity: 0;
+}
+
+.menu-bar .bottom-content .toggle-switch{
+    position: absolute;
+    right: 0;
+    height: 100%;
+    min-width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.toggle-switch .switch{
+    position: relative;
+    height: 22px;
+    width: 40px;
+    border-radius: 25px;
+    background-color: var(--toggle-color);
+    transition: var(--tran-05);
+}
+
+.switch::before{
+    content: '';
+    position: absolute;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    background-color: var(--sidebar-color);
+    transition: var(--tran-04);
+}
+
+body.dark .switch::before{
+    left: 20px;
+}
+
+.home{
+    position: absolute;
+    top: 0;
+    top: 0;
+    left: 250px;
+    min-height: 100vh;
+    width: calc(100% - 250px);
+    background-color: var(--body-color);
+    transition: var(--tran-05);
+    align-items: center;
+}
+.home .text{
+    font-size: 30px;
+    font-weight: 500;
+    color: var(--text-color);
+    padding: 12px 60px;
+}
+
+.sidebar.close ~ .home{
+    left: 78px;
+    height: 100vh;
+    width: calc(100% - 78px);
+}
+body.dark .home .text{
+    color: var(--text-color);
+}
+/* table style */
+
+
+/* CSS for Table in Light Mode */
+.table_body table {
+
+
+    align-content: center;
+    color: rgb(0, 0, 0);
+    border-radius: .8rem;
+    background-color: #fff; /* Light mode background color */
+    align-items: center;
+   
+
+    padding: auto;
+}
+
+.table.dataTable {
+   margin-bottom: 100px;
+    
+    }
+/* CSS for Table in Dark Mode */
+body.dark .table_body table {
+    background-color: #242526; /* Dark mode background color */
+    color: #fff; /* Font color in dark mode */
+}
+
+table,
+th,
+
+tr {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid black;
+    font-size: 15px;
+    border-radius: .8rem;
+    align-content: center;
+    margin-left: 5rem;
+  
+}
+
+thead th {
+    background-color: rgb(8, 8, 8);
+    color: rgb(255, 250, 250);
+    
+}
+
+tbody tr:hover {
+    background-color: var(--primary-color);
+}
+
+.table_body,
+.search_bar {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+
+    size: 1.5rem;
+} 
+
+.search_bar input {
+    width: 50%;
+    padding: 10px;
+    border: 1px solid rgb(190, 190, 190);
+}
+
+.search_bar input:focus {
+    border: 1px solid rgb(226, 86, 43);
+}
+
+.search_bar select {
+    border: 1px solid rgb(190, 190, 190);
+    padding: 10px;
+    margin-left: 1rem;
+    
+}
+
+#newButtonId{
+
+    background-color: var(--primary-color-light); /* Button background color */
+    color: var(--text-color); /* Button text color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-left: 1rem;
+    font-size: 1rem;
+    align-content: center;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    padding: 8px;
+    margin-top: 25px;
+    margin-bottom: 30px;
+}
+
+#newButtonId:hover{
+    background-color: var(--primary-color); /* Hover state background color */
+}
+
+/* Style for bottom links */
+.home .bottom-links {
+    margin-top: 15px; /* Adjust top margin */
+    margin-bottom: 30px; /* Adjust bottom margin */
+    text-align: center; /* Center align the links horizontally */
+    display: flex;
+    flex-direction: column; /* Arrange links vertically */
+    justify-content: center; /* Center links vertically */
+    align-items: center; /* Center links horizontally */
+}
+
+.home .text {
+    margin-bottom: 20px; /* Adjust margin below management text */
+}
+
+.home .bottom-links a {
+    position: relative;
+    display: inline-block;
+    color: #fff;
+    padding: 12px 38px;
+    background: linear-gradient(90deg, #6616d0, #ac34e7);
+    border-radius: 45px;
+    margin: 5px; /* Adjust margin between links */
+    font-size: 30px;
+    font-weight: 400;
+    text-decoration: none;
+    box-shadow: 3px 5px rgba(0, 0, 0, 0.1);
+    border-top: 1px solid rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.home .bottom-links a:hover {
+    background: linear-gradient(90deg, #e34202, #aecbf7);
+}
+
+.tracking {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    color: var(--primary-color);
+}
+
+.tracking h2 {
+    margin-bottom: 10px;
+}
+
+#trackForm {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+#trackForm input[type="text"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+    width: 300px; /* Adjust width as needed */
+}
+
+#trackForm button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100px; /* Adjust width as needed */
+}
+
+#trackForm button:hover {
+    background-color: #f15900;
+}
+
+
+#trackForm button:hover {
+    background-color: #45a049;
+}
+
+/* About Style */
+.person {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center align horizontally */
+    flex-direction: column; /* Align items vertically */
+    margin-bottom: 30px;
+    width: 70%;
+    margin-left: 20%;
+    color: var(--text-color);
+}
+
+.person img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 20px; /* Increase space between image and text */
+}
+
+.person h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: var(--text-color);
+}
+
+.person p {
+    font-size: 1.1em;
+    margin-bottom: 5px;
+}
+
+.person .position {
+    font-weight: bold;
+}
+
+.account-buttons {
+    margin-top: 15px; /* Adjust top margin */
+    margin-bottom: 30px; /* Adjust bottom margin */
+    text-align: center; /* Center align the links horizontally */
+    display: flex;
+    flex-direction: column; /* Arrange links vertically */
+    justify-content: center; /* Center links vertically */
+    align-items: center; /* Center links horizontally */
+}
+
+.account-buttons a {
+    position: relative;
+    display: inline-block;
+    color: #fff;
+    padding: 12px 38px;
+    background: linear-gradient(90deg, #6616d0, #ac34e7);
+    border-radius: 45px;
+    margin: 5px; /* Adjust margin between links */
+    font-size: 30px;
+    font-weight: 400;
+    text-decoration: none;
+    box-shadow: 3px 5px rgba(0, 0, 0, 0.1);
+    border-top: 1px solid rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.account-buttons a:hover {
+    background: linear-gradient(90deg, #e34202, #aecbf7);
+}
+.fadeOut {
+    animation: fadeOut 0.3s ease;
+}
+#imgBox {
+    margin: 0 auto; /* Center the container horizontally */
+    text-align: center; /* Center the content (QR code image) inside the container */
+}
+
+/* Style for the QR Code image */
+#qrCode {
+    width: 200px;
+    height: 200px;
+    border: 1px solid #ccc;
+    color: var(--text-color);
+}
+
+/* Style for the Confirm button */
+.confirm-button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 0 auto; /* Center the container horizontally */
+    text-align: center;
+    align-content: center;
+}
+
+.confirm-button:hover {
+    background-color: #45a049;
+}
+.confirm-button {
+    display: block;
+    margin: 0 auto; /* Center the button horizontally */
+    text-align: center; /* Center the button text */
+}
+/* CSS for the submit button */
+button[type="button"] {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0 auto; 
+}
+
+/* Hover effect for the button */
+button[type="button"]:hover {
+    background-color: #0056b3;
+}
+
+/* Style for form elements */
+label {
+    font-weight: bold;
+    margin: 0px;
+
+}
+
+select[type="select"] {
+    padding: 10px;
+    margin:  0px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="Establishment"],
+#account > div select {
+    width: 100%;
+    padding: 10px;
+    margin:  0px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+   
+    color: black;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 2px;
+    font-size: 20px;
+    
+
+}
+
+input[type="submit"]:hover {
+    background-color: var(--primary-color);
+}
+#formContainer {
+    max-width: 100px;
+    padding: 1px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+/* Style for form inputs */
+label, input, select {
+    display: block;
+
+}
+
+/* Style for add button */
+#addButton {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+    /* Style for form container */
+    #formContainer {
+        max-width: 400px;
+        margin: 0 auto; 
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+
+    /* Style for form inputs */
+    label, input, select {
+        display: block;
+    
+    }
+
+    /* Style for add button */
+    #addButton {
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin-bottom: 20px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    /* Style for hint */
+    #hint {
+        margin-top: 10px;
+        color: #888;
+        font-style: italic;
+    }
+    .button-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px; /* Adjust margin as needed */
+    }
+
+    #toggleButton {
+        padding: 12px 10px;
+        background-color: #007bff; /* Change the background color */
+        color: white; /* Text color */
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease; /* Smooth transition */
+       
+    }
+
+    #toggleButton:hover {
+        background-color: #0056b3; /* Change color on hover */
+    }
+    /* Define colors for each status */
+.status-completed {
+    background-color: #a3f3a3; /* Light green */
+}
+
+.status-pending {
+    background-color: #ff9999; /* Light yellow */
+}
+
+.status-ongoing {
+    background-color:  #fffa99;; /* Light blue */
+}
+
+.pass_show{position: relative} 
+
+.pass_show .ptxt { 
+    position: absolute; 
+    top: 68%; 
+    right: 10px; 
+    z-index: 1; 
+    color: #f36c01; 
+    margin-top: -10px; 
+    cursor: pointer; 
+    transition: .3s ease all; 
+} 
+
+.pass_show .ptxt:hover{color: #333333;}
+
+.popup textarea {
+    width: 100%;
+    max-width: calc(100% - 20px);
+    box-sizing: border-box;
+    resize: vertical;
+}
+
+.dataTables_filter input[type="search"] {
+    width: 300px;
+}
+.dataTable tbody tr.highlight {
+    background-color: rgba(218, 62, 0, 0.522);
+}
+.email {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 15px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.email:hover {
+    background-color: #e0e0e0;
+}
+
+.message-content {
+    display: none; /* Initially hide the message content */
+}
+
+.sender {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.subject {
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.preview {
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.date {
+    color: #999;
+    font-size: 0.8em;
+}

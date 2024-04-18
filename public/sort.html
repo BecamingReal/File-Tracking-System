@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sortable Table Example</title>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    th, td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+</style>
+</head>
+<body>
+
+<table id="sortable-table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Country</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>John</td>
+            <td>25</td>
+            <td>USA</td>
+        </tr>
+        <tr>
+            <td>Emily</td>
+            <td>30</td>
+            <td>Canada</td>
+        </tr>
+        <tr>
+            <td>David</td>
+            <td>20</td>
+            <td>UK</td>
+        </tr>
+    </tbody>
+</table>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    $(document).ready(function() {
+        // Make the table rows sortable
+        $("#sortable-table tbody").sortable({
+            helper: 'clone', // Use a clone as the helper while dragging
+            axis: 'y', // Allow vertical dragging only
+            cursor: 'move', // Change cursor to indicate draggable
+            update: function(event, ui) {
+                // Perform actions after sorting (optional)
+                console.log("Table sorted!");
+            }
+        }).disableSelection(); // Disable text selection while dragging
+    });
+</script>
+
+</body>
+</html>

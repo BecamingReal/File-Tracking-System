@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sortable and Filterable Table Example</title>
+    
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+
+    <!-- jQuery -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- DataTables JS -->
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+</head>
+<body>
+
+<input type="text" id="searchInput" placeholder="Search...">
+<select id="statusFilter">
+    <option value="">All Status</option>
+    <option value="Active">Active</option>
+    <option value="Inactive">Inactive</option>
+</select>
+<br><br>
+
+<table id="transactionTable" class="display">
+    <thead>
+        <tr>
+            <th>Transaction Number</th>
+            <th>Transaction Type</th>
+            <th>Payee</th>
+            <th>Transaction Date</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Time elapsed</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>Deposit</td>
+            <td>John Doe</td>
+            <td>2024-04-14</td>
+            <td>$100</td>
+            <td>Active</td>
+            <td>1 day</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Withdrawal</td>
+            <td>Jane Smith</td>
+            <td>2024-04-15</td>
+            <td>$50</td>
+            <td>Inactive</td>
+            <td>2 days</td>
+        </tr>
+        <!-- Add more rows as needed -->
+    </tbody>
+</table>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        var table = $('#transactionTable').DataTable();
+
+        $('#searchInput').on('keyup', function() {
+            table.search(this.value).draw();
+        });
+
+        $('#statusFilter').on('change', function() {
+            var status = $(this).val();
+            table.column(5).search(status).draw();
+        });
+    });
+</script>
+
+</body>
+</html>
