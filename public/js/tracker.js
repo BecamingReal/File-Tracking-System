@@ -92,7 +92,7 @@ function getTrack(dataString) {
                                         office_rec: steps[count],
                                         in: "",
                                         count: count,
-                                        proceed: 1}, "red");
+                                        proceed: 2}, "red");
                                     ;
                                 }
                             }
@@ -122,7 +122,7 @@ function getTrack(dataString) {
                                         office_rec: steps[count],
                                         in: "",
                                         count: count,
-                                        proceed: 1}, "red");
+                                        proceed: 2}, "red");
                                     ;
                                 }
                             }
@@ -158,7 +158,7 @@ function appendStep(step, color) {
             </div>
             <div class="flex-container">
                 <div class="detaillabel">Conclusion:</div>
-                <div class="detail">${step.proceed == 1 ? "PROCEED TO NEXT STEP" : "RETURN TO LAST STEP"}</div>
+                <div class="detail">${step.proceed == 1 ? "PROCEED TO NEXT STEP" : step.proceed == 0 ? "RETURN TO LAST STEP" : ""}</div>
             </div>
         </div>
     </div>

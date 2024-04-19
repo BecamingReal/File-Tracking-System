@@ -1,5 +1,4 @@
 <?php
-$roles = array("Administrator", "Moderator", "User", "Liaison");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     require_once('../../includes/db_config.php');
     $connection = getDBConnection();
@@ -201,7 +200,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             list($date, $office, $id) = explode("-", $track_id);
         }
         $liaison_id = $_POST['liaison_id'];
-        $comment = $_POST['comment'];
+        $comment = trim($_POST['comment']);
         $requestby = $_POST['requestby'];
         $sql = "SELECT * FROM file WHERE track_id = ?";
         $stmt = $connection->prepare($sql);

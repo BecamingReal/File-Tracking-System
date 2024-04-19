@@ -2,28 +2,19 @@
 if (true) {
     require_once('../../includes/db_config.php');
     $connection = getDBConnection();
-    $sql = "SELECT * FROM action";
-    if (isset($_POST['track_id'])) {
-        $track_id = $_POST['track_id'];
-        $sql .= " WHERE track_id = ?";
-    }
-    else if (isset($_POST['office_rec'])) {
-        $track_id = $_POST['office_rec'];
-        $sql .= " WHERE office_rec = ?";
-    }
+    $sql = "SELECT 
+    track_id, 
+    TIMEDIFF(
+            (SELECT `in` FROM `action` WHERE `track_id` = a.track_id AND `count` = (SELECT MAX(`count`) FROM `action` WHERE `track_id` = a.track_id)),
+            (SELECT `out` FROM `action` WHERE `track_id` = a.track_id AND `count` = 1)
+        ) AS action_time FROM (SELECT DISTINCT track_id FROM `action`) a";
     $stmt = $connection->prepare($sql);
-    if (isset($_POST['track_id'])) {
-        $stmt->bind_param("s", $track_id);
-    }
-    else if (isset($_POST['office_rec'])) {
-        $stmt->bind_param("s", $office_rec);
-    }
     $stmt->execute();
     $result = $stmt->get_result();
     if ($result === false) {
         die("Query error: " . $connection->error);
     }
-    $data = array();
+    $durationOfTransaction = array();
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             $office_rec = $row["office_rec"];
@@ -34,7 +25,7 @@ if (true) {
             $proceed = $row["proceed"];
             $count = $row["count"];
     
-            $data[] = array(
+            $durationOfTransaction[] = array(
                 "office_rec" => $office_rec,
                 "in" => $in,
                 "out" => $out,

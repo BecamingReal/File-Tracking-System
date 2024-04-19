@@ -1,5 +1,5 @@
 <?php
-if (isset($_POST['track_id']) || isset($_POST['all'])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     require_once('../../includes/db_config.php');
     $connection = getDBConnection();
     $sql = "SELECT * FROM action";
@@ -8,15 +8,15 @@ if (isset($_POST['track_id']) || isset($_POST['all'])) {
         $sql .= " WHERE track_id = ?";
     }
     else if (isset($_POST['office_rec'])) {
-        $track_id = $_POST['office_rec'];
-        $sql .= " WHERE office_rec = ?";
+        $office_rec = $_POST['office_rec'];
+        $sql .= " WHERE office_rec = ? AND comment != ''";
     }
     $stmt = $connection->prepare($sql);
     if (isset($_POST['track_id'])) {
         $stmt->bind_param("s", $track_id);
     }
     else if (isset($_POST['office_rec'])) {
-        $stmt->bind_param("s", $office_rec);
+        $stmt->bind_param("i", $office_rec);
     }
     $stmt->execute();
     $result = $stmt->get_result();
@@ -33,6 +33,7 @@ if (isset($_POST['track_id']) || isset($_POST['all'])) {
             $comment = $row["comment"];
             $proceed = $row["proceed"];
             $count = $row["count"];
+            $read = $row["read"];
     
             $data[] = array(
                 "office_rec" => $office_rec,
@@ -41,7 +42,8 @@ if (isset($_POST['track_id']) || isset($_POST['all'])) {
                 "liaison" => $liaison,
                 "comment" => $comment,
                 "proceed" => $proceed,
-                "count" => $count
+                "count" => $count,
+                "read" => $read
             );
         }
     } else {

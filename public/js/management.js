@@ -84,7 +84,7 @@ function getTransactionList() {
                     showCancelButton: true,
                     cancelButtonText: 'Ok',
                     cancelButtonColor: 'blue',
-                    confirmButtonText: 'Print',
+                    confirmButtonText: 'Download QR Code',
                     confirmButtonColor: 'orange',
                     html: `
                     <div class="tracking-step">
@@ -134,7 +134,22 @@ function getTransactionList() {
                 `
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        
+                        // Get the QR code data from the response and remove dashes
+        var qrData = response[index].replace(/-/g, '');
+        
+        // Create an anchor element
+        var downloadLink = document.createElement("a");
+        downloadLink.href = "https://api.qrserver.com/v1/create-qr-code/?data=" + qrData;
+        downloadLink.download = "qr_code.png"; // Filename for the downloaded file
+
+        // Append the anchor to the body
+        document.body.appendChild(downloadLink);
+
+        // Trigger the click event of the anchor
+        downloadLink.click();
+
+        // Remove the anchor from the body
+        document.body.removeChild(downloadLink);
                     }
                 });
             });
@@ -475,3 +490,24 @@ $("#transactionLink").click(function(e) {
     e.preventDefault();
     getTransactionList();
 });
+
+$("#Remarks").click(function(e) {
+    e.preventDefault();
+    getRemarks();
+});
+
+function getRemarks() {
+    $.ajax({
+        type: "POST",
+        url: "db/getAction.php",
+        data: { office_rec: office_code },
+        success: function (response) {
+            console.log(response);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR);
+            console.log(textStatus);
+            console.log(errorThrown);
+        }
+    });
+}

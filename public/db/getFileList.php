@@ -1,5 +1,5 @@
 <?php
-if (isset($_POST['track_id']) || isset($_POST['all'])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     require_once('../../includes/db_config.php');
     $connection = getDBConnection();
     require_once('getTimeZone.php');
